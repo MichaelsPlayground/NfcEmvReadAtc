@@ -30,6 +30,25 @@ Workflow for a VisaCard
 applicationTransactionCounter (hex): 0353
 ```
 
+Workflow for a MasterCard
+```plaintext
+01 select PPSE
+01 select PPSE command length 20 data:  00a404000e325041592e5359532e444446303100
+01 select PPSE response length 64 data: 6f3c840e325041592e5359532e4444463031a52abf0c2761254f07a000000004101050104465626974204d6173746572436172648701019f0a04000101019000
+
+02 select a VisaCard
+02 select a VisaCard command length 13 data: 00a4040007a000000003101000
+02 select a VisaCard response length 2 data: 6a82
+
+02 select a MasterCard
+02 select a MasterCard command length 13 data: 00a4040007a000000004101000
+02 select a MasterCard response length 86 data: 6f528407a0000000041010a54750104465626974204d6173746572436172649f12104465626974204d6173746572436172648701019f1101015f2d046465656ebf0c119f0a04000101019f6e07028000003030009000
+
+03 getApplicationTransactionCounter
+applicationTransactionCounter (hex): 6a88
+```
+
+
 code used to read the Application Transaction Counter:
 ```plaintext
     private byte[] getApplicationTransactionCounter(IsoDep nfc) {
@@ -47,25 +66,6 @@ code used to read the Application Transaction Counter:
         }
         return result;
     }
-```
-
-
-Workflow for a MasterCard
-```plaintext
-01 select PPSE
-01 select PPSE command length 20 data:  00a404000e325041592e5359532e444446303100
-01 select PPSE response length 64 data: 6f3c840e325041592e5359532e4444463031a52abf0c2761254f07a000000004101050104465626974204d6173746572436172648701019f0a04000101019000
-
-02 select a VisaCard
-02 select a VisaCard command length 13 data: 00a4040007a000000003101000
-02 select a VisaCard response length 2 data: 6a82
-
-02 select a MasterCard
-02 select a MasterCard command length 13 data: 00a4040007a000000004101000
-02 select a MasterCard response length 86 data: 6f528407a0000000041010a54750104465626974204d6173746572436172649f12104465626974204d6173746572436172648701019f1101015f2d046465656ebf0c119f0a04000101019f6e07028000003030009000
-
-03 getApplicationTransactionCounter
-applicationTransactionCounter (hex): 6a88
 ```
 
 Don't forget to append these permissions:
