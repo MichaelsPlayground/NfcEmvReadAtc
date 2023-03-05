@@ -13,7 +13,7 @@ information that this information is not available on MasterCards generally.
 - response for VisaCard (hex): 0353
 - response for MasterCard: 6a88 -> this is an error code meaning "Referenced data not found"
 
-This project is the basis for a question on StackOverflow: 
+This project is the basis for a question on StackOverflow: https://stackoverflow.com/questions/75643247/emv-get-application-transaction-counter-fails-for-mastercard-but-not-for-visacar
 
 Workflow for a VisaCard
 ```plaintext
