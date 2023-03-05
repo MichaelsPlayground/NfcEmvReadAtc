@@ -48,6 +48,8 @@ Workflow for a MasterCard
 applicationTransactionCounter (hex): 6a88
 ```
 
+Don't forget to append these permissions:
+
 AndroidManifest.xml:
 ```plaintext
     <!-- needed for NFC -->
