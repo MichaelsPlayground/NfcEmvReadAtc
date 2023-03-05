@@ -1,10 +1,16 @@
 # NFC EMV Read Application Transaction Counter (ATC)
 
-This app tries to read the Application Transaction Counter (ATC) from a payment (credit) card.
+This app tries to read the Application Transaction Counter (ATC) from a payment (credit) card. Unfortunately 
+I only get a positive response for VisaCards but not for MasterCards. This seems to be unusual because the 
+ATC is part of a cryptogram when making payments and I didn't found any information that this information 
+is not available on MasterCards generally.
 
-1) select PPSE
-2) search for tag 0x4F in respond (available AID(s))
-3) here we are selecting the AID manually for VisaCard (AID A0000000031010) or MasterCard (A0000000041010)
+1) select PPSE and search for tag 0x4F in respond (available AID(s))
+2) here we are selecting the AIDs manually for VisaCard (AID A0000000031010) or MasterCard (A0000000041010)
+3) get the ATC: 
+
+- response for VisaCard (hex): 0353
+- response for MasterCard: 6a88 -> this is an error code meaning "Referenced data not found"
 
 Workflow for a VisaCard
 ```plaintext

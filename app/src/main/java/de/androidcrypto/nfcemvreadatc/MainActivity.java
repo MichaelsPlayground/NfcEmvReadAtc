@@ -128,30 +128,6 @@ public class MainActivity extends AppCompatActivity implements NfcAdapter.Reader
         return result;
     }
 
-    private byte[] getPinTryCounter(IsoDep nfc) {
-        byte[] cmd = new byte[]{(byte) 0x80, (byte) 0xCA, (byte) 0x9F, (byte) 0x17, (byte) 0x00};
-        byte[] result = new byte[0];
-        try {
-            result = nfc.transceive(cmd);
-        } catch (IOException e) {
-            System.out.println("* getPinTryCounterCounter failed");
-            return null;
-        }
-        return result;
-    }
-
-    private byte[] getLastOnlineATCRegister(IsoDep nfc) {
-        byte[] cmd = new byte[]{(byte) 0x80, (byte) 0xCA, (byte) 0x9F, (byte) 0x13, (byte) 0x00};
-        byte[] result = new byte[0];
-        try {
-            result = nfc.transceive(cmd);
-        } catch (IOException e) {
-            System.out.println("* getLastOnlineATCRegister failed");
-            return null;
-        }
-        return result;
-    }
-
     /**
      * converts a byte array to a hex encoded string
      * @param bytes
