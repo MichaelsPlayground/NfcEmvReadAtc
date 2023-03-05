@@ -30,6 +30,26 @@ Workflow for a VisaCard
 applicationTransactionCounter (hex): 0353
 ```
 
+code used to read the Application Transaction Counter:
+```plaintext
+    private byte[] getApplicationTransactionCounter(IsoDep nfc) {
+        byte[] cmd = new byte[]{(byte) 0x80, (byte) 0xCA, (byte) 0x9F, (byte) 0x36, (byte) 0x00};
+        byte[] result = new byte[0];
+        try {
+            result = nfc.transceive(cmd);
+        } catch (IOException e) {
+            System.out.println("* getApplicationTransactionCounter failed");
+            return null;
+        }
+        if (result.length == 7) {
+            // example result: 9f360200169000, counter is (hex) 00 16 = (decimal) 22
+            return Arrays.copyOfRange(result, (result.length - 4), (result.length - 2));
+        }
+        return result;
+    }
+```
+
+
 Workflow for a MasterCard
 ```plaintext
 01 select PPSE
